@@ -1,7 +1,5 @@
-import httpx
-from typing import Any
 from fastmcp import FastMCP, Context
-from urllib.parse import quote
+import asyncio
 
 mcp = FastMCP(name="sse")
 
@@ -9,7 +7,6 @@ mcp = FastMCP(name="sse")
 def add(a: int, b: int) -> int:
     """Add two numbers"""
     return a + b
-
 
 # Add a dynamic greeting resource
 @mcp.resource("greeting://{name}")
@@ -19,4 +16,4 @@ def get_greeting(name: str) -> str:
 
 if __name__ == "__main__":
     # Initialize and run the server
-    mcp.run(transport="stdio")
+    asyncio.run(mcp.run_sse_async(log_level="debug"))
