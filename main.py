@@ -1,7 +1,7 @@
 from fastmcp import FastMCP, Context
 import asyncio
 
-mcp = FastMCP(name="sse")
+mcp = FastMCP(name="sse", log_level="DEBUG")
 
 @mcp.tool()
 def add(a: int, b: int) -> int:
@@ -16,4 +16,4 @@ def get_greeting(name: str) -> str:
 
 if __name__ == "__main__":
     # Initialize and run the server
-    asyncio.run(mcp.run_sse_async(log_level="debug"))
+    asyncio.run(mcp.run_sse_async())
